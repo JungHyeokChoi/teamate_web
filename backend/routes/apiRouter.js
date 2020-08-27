@@ -71,6 +71,20 @@ router.route('/api/signin')
         })
     })
 
+router.route('/api/signout')
+    .get(WithAuth, (req, res, next) => {
+        res.clearCookie('token').sendStatus(200)
+    })
+
+router.route('/api/checkCookie')
+    .get((req, res, next) => {
+        if(req.cookies.token && req.cookies.token.mberSn !== ""){
+            res.sendStatus(200)
+        } else {
+            res.sendStatus(401)
+        }
+    })
+
 router.route('/checkToken')
     .get(WithAuth, (req, res, next) => {
         res.sendStatus(200)

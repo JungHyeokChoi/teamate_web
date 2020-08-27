@@ -7,7 +7,6 @@ const Items = () => {
         fetch('/api/items')
         .then(res => res.json())
         .then(res => {
-            console.log(res)
             setItems(res)
         })
     },[])
